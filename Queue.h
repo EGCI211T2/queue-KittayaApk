@@ -57,7 +57,7 @@ int Queue::dequeue(){
   --size;
   delete t;
 
-  cout << "dequeing " << value << endl << endl;
+  cout << "dequeing " << value << endl;
   return value;
 }
 
@@ -68,10 +68,8 @@ Queue::Queue(){
     tailPtr = nullptr;
 }
 
-Queue::~Queue(){
-      
+Queue::~Queue(){  
     cout << "Clearing queue" << endl << endl;
-
     //delete all remaning Queue (i.e. DQ all) 
     while(size > 0){
         dequeue();
