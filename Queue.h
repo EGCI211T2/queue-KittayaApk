@@ -42,6 +42,8 @@ int Queue::dequeue(){
      /* Add head and tail for me please */
 
      NodePtr t = headPtr;
+     int value = headPtr->get_value();
+
      headPtr = headPtr->get_next();
 
      if(headPtr == nullptr){
@@ -50,10 +52,12 @@ int Queue::dequeue(){
 
      --size;
      delete t;
-     
+
+     cout << "Dequeing " << value << endl;
+     return value;
   }
 
-  cout << "Empty queue";
+  cout << "Empty Queue" << endl;
   return -1;
 }
 
@@ -66,13 +70,12 @@ Queue::Queue(){
 
 Queue::~Queue(){
       
-    cout << " Dequeue all" << endl;
-     //delete all remaning Queue (i.e. DQ all) 
-int n=size;
+    cout << "Clearing queue" << endl;
+
+    //delete all remaning Queue (i.e. DQ all) 
     while(size > 0){
         dequeue();
     }
 }
-
 
 #endif
