@@ -37,28 +37,28 @@ void Queue::enqueue(int x){
 }
 
 int Queue::dequeue(){
-  if(size > 0){
-    
-     /* Add head and tail for me please */
 
-     NodePtr t = headPtr;
-     int value = headPtr->get_value();
-
-     headPtr = headPtr->get_next();
-
-     if(headPtr == nullptr){
-        tailPtr = nullptr;
-     }
-
-     --size;
-     delete t;
-
-     cout << "Dequeing " << value << endl;
-     return value;
+  if(size == 0){
+      cout << "Empty Queue" << endl << endl;
+      return -1;
   }
 
-  cout << "Empty Queue" << endl;
-  return -1;
+  /* Add head and tail for me please */
+
+  NodePtr t = headPtr;
+  int value = headPtr->get_value();
+
+  headPtr = headPtr->get_next();
+
+  if(headPtr == nullptr){
+     tailPtr = nullptr;
+  }
+
+  --size;
+  delete t;
+
+  cout << "dequeing " << value << endl << endl;
+  return value;
 }
 
 Queue::Queue(){
@@ -70,7 +70,7 @@ Queue::Queue(){
 
 Queue::~Queue(){
       
-    cout << "Clearing queue" << endl;
+    cout << "Clearing queue" << endl << endl;
 
     //delete all remaning Queue (i.e. DQ all) 
     while(size > 0){
