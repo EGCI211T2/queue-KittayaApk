@@ -1,5 +1,6 @@
 #ifndef queue_h
 #define queue_h
+
 #include <iostream>
 #include "Node.h"
 using namespace std;
@@ -7,73 +8,54 @@ using namespace std;
 class Queue {
 	NodePtr headPtr, tailPtr;
 	int size;
+
 public:
-    void enqueue(int);
-    int dequeue();
+    void enqueue(int,int);
+    NodePtr dequeue();
+    int get_size();
     Queue();
-    ~Queue();
 };
 
-void Queue::enqueue(int x){
-  NodePtr new_node = new NODE(x);
-
-  if(new_node){ 
-    /* Add head and tail for me please */
-
-   //1. connect & Change tail
-   if(size > 0){
-       tailPtr->set_next(new_node);
-   }
-   else{
-    // 2. (may be) change head  when the queue is empty
-     headPtr = new_node;
-   }
-
-   tailPtr = new_node;
-
-   // 3. increase size
-   size++;
-  }
-}
-
-int Queue::dequeue(){
-
-  if(size == 0){
-      cout << "Empty Queue" << endl << endl;
-      return -1;
-  }
-
-  /* Add head and tail for me please */
-
-  NodePtr t = headPtr;
-  int value = headPtr->get_value();
-
-  headPtr = headPtr->get_next();
-
-  if(headPtr == nullptr){
-     tailPtr = nullptr;
-  }
-
-  --size;
-  delete t;
-
-  cout << "dequeing " << value << endl;
-  return value;
-}
-
 Queue::Queue(){
-    //initialize Queue
     size = 0;
-    headPtr = nullptr;
-    tailPtr = nullptr;
+    headPtr = NULL;
+    tailPtr = NULL;
 }
 
-Queue::~Queue(){  
-    cout << "Clearing queue" << endl << endl;
-    //delete all remaning Queue (i.e. DQ all) 
-    while(size > 0){
-        dequeue();
+void Queue::enqueue(int order,int qty){
+
+    NodePtr new_node = new NODE(order,qty);
+
+    if(size==0){
+        headPtr = tailPtr = new_node;
     }
+    else{
+        tailPtr->set_next(new_node);
+        tailPtr = new_node;
+    }
+
+    size++;
+}
+
+NodePtr Queue::dequeue(){
+
+    if(size==0)
+        return NULL;
+
+    NodePtr temp = headPtr;
+
+    headPtr = headPtr->get_next();
+
+    if(headPtr==NULL)
+        tailPtr=NULL;
+
+    size--;
+
+    return temp;
+}
+
+int Queue::get_size(){
+    return size;
 }
 
 #endif
