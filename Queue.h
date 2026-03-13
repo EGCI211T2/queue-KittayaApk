@@ -1,61 +1,53 @@
-#ifndef queue_h
-#define queue_h
+#ifndef QUEUE_H
+#define QUEUE_H
 
-#include <iostream>
 #include "Node.h"
-using namespace std;
 
-class Queue {
-	NodePtr headPtr, tailPtr;
-	int size;
+class Queue{
+    NodePtr headPtr;
+    NodePtr tailPtr;
 
 public:
-    void enqueue(int,int);
-    NodePtr dequeue();
-    int get_size();
-    Queue();
-};
+    Queue(){
+        headPtr=NULL;
+        tailPtr=NULL;
+    }
 
-Queue::Queue(){
-    size = 0;
-    headPtr = NULL;
-    tailPtr = NULL;
-}
+    void enqueue(int order,int qty);
+    NodePtr dequeue();
+    bool isEmpty();
+};
 
 void Queue::enqueue(int order,int qty){
 
     NodePtr new_node = new NODE(order,qty);
 
-    if(size==0){
-        headPtr = tailPtr = new_node;
+    if(headPtr==NULL){
+        headPtr=new_node;
+        tailPtr=new_node;
     }
     else{
-        tailPtr->set_next(new_node);
-        tailPtr = new_node;
+        tailPtr->next=new_node;
+        tailPtr=new_node;
     }
-
-    size++;
 }
 
 NodePtr Queue::dequeue(){
 
-    if(size==0)
+    if(headPtr==NULL)
         return NULL;
 
-    NodePtr temp = headPtr;
-
-    headPtr = headPtr->get_next();
+    NodePtr temp=headPtr;
+    headPtr=headPtr->next;
 
     if(headPtr==NULL)
         tailPtr=NULL;
 
-    size--;
-
     return temp;
 }
 
-int Queue::get_size(){
-    return size;
+bool Queue::isEmpty(){
+    return headPtr==NULL;
 }
 
 #endif

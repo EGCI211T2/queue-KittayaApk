@@ -1,5 +1,5 @@
-#ifndef node_h
-#define node_h
+#ifndef NODE_H
+#define NODE_H
 
 #include <iostream>
 using namespace std;
@@ -11,17 +11,9 @@ public:
     NODE* next;
 
     NODE(int o,int q){
-        order = o;
-        qty = q;
-        next = NULL;
-    }
-
-    void set_next(NODE* t){
-        next = t;
-    }
-
-    NODE* get_next(){
-        return next;
+        order=o;
+        qty=q;
+        next=NULL;
     }
 };
 
