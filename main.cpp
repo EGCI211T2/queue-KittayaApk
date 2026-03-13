@@ -29,12 +29,12 @@ int main(int argc , char **argv) {
                 int price=0;
 
                 if(cust->order==1){
-                    cout<<"Ramen"<<endl;
+                    cout<<"Green curry"<<endl;
                     price = 200 * cust->qty;
                 }
 
                 else if(cust->order==2){
-                    cout<<"Fried Chicken"<<endl;
+                    cout<<"Thai basil"<<endl;
                     price = 100 * cust->qty;
                 }
 
